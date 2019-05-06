@@ -9,20 +9,15 @@ proc generate {drv_handle} {
     xdefine_include_file $drv_handle "xparameters.h" "XConv_dataflow" \
         "NUM_INSTANCES" \
         "DEVICE_ID" \
-        "C_S_AXI_AXILITES_BASEADDR" \
-        "C_S_AXI_AXILITES_HIGHADDR" \
         "C_S_AXI_CTRL_BUS_BASEADDR" \
         "C_S_AXI_CTRL_BUS_HIGHADDR"
 
     xdefine_config_file $drv_handle "xconv_dataflow_g.c" "XConv_dataflow" \
         "DEVICE_ID" \
-        "C_S_AXI_AXILITES_BASEADDR" \
         "C_S_AXI_CTRL_BUS_BASEADDR"
 
     xdefine_canonical_xpars $drv_handle "xparameters.h" "XConv_dataflow" \
         "DEVICE_ID" \
-        "C_S_AXI_AXILITES_BASEADDR" \
-        "C_S_AXI_AXILITES_HIGHADDR" \
         "C_S_AXI_CTRL_BUS_BASEADDR" \
         "C_S_AXI_CTRL_BUS_HIGHADDR"
 }
