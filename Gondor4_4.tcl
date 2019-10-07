@@ -202,9 +202,27 @@ proc create_root_design { parentCell } {
 
   # Create instance: axi_bram_ctrl_0, and set properties
   set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0 ]
+  set_property -dict [ list \
+   CONFIG.SINGLE_PORT_BRAM {1} \
+ ] $axi_bram_ctrl_0
 
   # Create instance: axi_bram_ctrl_1, and set properties
   set axi_bram_ctrl_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_1 ]
+  set_property -dict [ list \
+   CONFIG.SINGLE_PORT_BRAM {1} \
+ ] $axi_bram_ctrl_1
+
+  # Create instance: axi_bram_ctrl_2, and set properties
+  set axi_bram_ctrl_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_2 ]
+  set_property -dict [ list \
+   CONFIG.SINGLE_PORT_BRAM {1} \
+ ] $axi_bram_ctrl_2
+
+  # Create instance: axi_bram_ctrl_3, and set properties
+  set axi_bram_ctrl_3 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_3 ]
+  set_property -dict [ list \
+   CONFIG.SINGLE_PORT_BRAM {1} \
+ ] $axi_bram_ctrl_3
 
   # Create instance: axi_dma_0, and set properties
   set axi_dma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 ]
@@ -448,29 +466,8 @@ proc create_root_design { parentCell } {
    CONFIG.use_bram_block {Stand_Alone} \
  ] $dataflow4_4_0_bram_12
 
-  # Create instance: processing_system7_0, and set properties
-  set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
-  set_property -dict [ list \
-   CONFIG.PCW_FPGA_FCLK0_ENABLE {1} \
-   CONFIG.PCW_FPGA_FCLK1_ENABLE {0} \
-   CONFIG.PCW_FPGA_FCLK2_ENABLE {0} \
-   CONFIG.PCW_FPGA_FCLK3_ENABLE {0} \
-   CONFIG.PCW_USE_S_AXI_GP0 {0} \
-   CONFIG.PCW_USE_S_AXI_HP0 {1} \
-   CONFIG.PCW_USE_S_AXI_HP1 {1} \
-   CONFIG.PCW_USE_S_AXI_HP2 {1} \
-   CONFIG.PCW_USE_S_AXI_HP3 {1} \
- ] $processing_system7_0
-
-  # Create instance: ps7_0_axi_periph, and set properties
-  set ps7_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps7_0_axi_periph ]
-  set_property -dict [ list \
-   CONFIG.NUM_MI {7} \
-   CONFIG.NUM_SI {1} \
- ] $ps7_0_axi_periph
-
-  # Create instance: psum_buf_bram, and set properties
-  set psum_buf_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 psum_buf_bram ]
+  # Create instance: dataflow4_4_0_bram_13, and set properties
+  set dataflow4_4_0_bram_13 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 dataflow4_4_0_bram_13 ]
   set_property -dict [ list \
    CONFIG.Byte_Size {9} \
    CONFIG.EN_SAFETY_CKT {false} \
@@ -483,19 +480,45 @@ proc create_root_design { parentCell } {
    CONFIG.Use_RSTB_Pin {false} \
    CONFIG.Write_Depth_A {65536} \
    CONFIG.use_bram_block {Stand_Alone} \
- ] $psum_buf_bram
+ ] $dataflow4_4_0_bram_13
+
+  # Create instance: processing_system7_0, and set properties
+  set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
+  set_property -dict [ list \
+   CONFIG.PCW_FPGA_FCLK0_ENABLE {1} \
+   CONFIG.PCW_FPGA_FCLK1_ENABLE {0} \
+   CONFIG.PCW_FPGA_FCLK2_ENABLE {0} \
+   CONFIG.PCW_FPGA_FCLK3_ENABLE {0} \
+   CONFIG.PCW_USE_S_AXI_HP0 {1} \
+   CONFIG.PCW_USE_S_AXI_HP1 {1} \
+   CONFIG.PCW_USE_S_AXI_HP2 {1} \
+   CONFIG.PCW_USE_S_AXI_HP3 {1} \
+ ] $processing_system7_0
+
+  # Create instance: ps7_0_axi_periph, and set properties
+  set ps7_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps7_0_axi_periph ]
+  set_property -dict [ list \
+   CONFIG.NUM_MI {9} \
+   CONFIG.NUM_SI {1} \
+ ] $ps7_0_axi_periph
 
   # Create instance: rst_ps7_0_50M, and set properties
   set rst_ps7_0_50M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_0_50M ]
 
-  # Create instance: weight1_bram_0, and set properties
-  set weight1_bram_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 weight1_bram_0 ]
+  # Create instance: weight0_0_bram, and set properties
+  set weight0_0_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 weight0_0_bram ]
   set_property -dict [ list \
    CONFIG.Memory_Type {True_Dual_Port_RAM} \
- ] $weight1_bram_0
+ ] $weight0_0_bram
 
-  # Create instance: weight2_bram_0, and set properties
-  set weight2_bram_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 weight2_bram_0 ]
+  # Create instance: weight1_0_bram_0, and set properties
+  set weight1_0_bram_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 weight1_0_bram_0 ]
+  set_property -dict [ list \
+   CONFIG.Memory_Type {True_Dual_Port_RAM} \
+ ] $weight1_0_bram_0
+
+  # Create instance: weight2_0_bram_0, and set properties
+  set weight2_0_bram_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 weight2_0_bram_0 ]
   set_property -dict [ list \
    CONFIG.Enable_B {Use_ENB_Pin} \
    CONFIG.Memory_Type {True_Dual_Port_RAM} \
@@ -503,10 +526,10 @@ proc create_root_design { parentCell } {
    CONFIG.Port_B_Enable_Rate {100} \
    CONFIG.Port_B_Write_Rate {50} \
    CONFIG.Use_RSTB_Pin {true} \
- ] $weight2_bram_0
+ ] $weight2_0_bram_0
 
-  # Create instance: weight3_bram_0, and set properties
-  set weight3_bram_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 weight3_bram_0 ]
+  # Create instance: weight3_0_bram_0, and set properties
+  set weight3_0_bram_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 weight3_0_bram_0 ]
   set_property -dict [ list \
    CONFIG.Enable_B {Use_ENB_Pin} \
    CONFIG.Memory_Type {True_Dual_Port_RAM} \
@@ -514,83 +537,74 @@ proc create_root_design { parentCell } {
    CONFIG.Port_B_Enable_Rate {100} \
    CONFIG.Port_B_Write_Rate {50} \
    CONFIG.Use_RSTB_Pin {true} \
- ] $weight3_bram_0
-
-  # Create instance: weight_0_bram, and set properties
-  set weight_0_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 weight_0_bram ]
-  set_property -dict [ list \
-   CONFIG.Enable_B {Use_ENB_Pin} \
-   CONFIG.Memory_Type {True_Dual_Port_RAM} \
-   CONFIG.Port_B_Clock {100} \
-   CONFIG.Port_B_Enable_Rate {100} \
-   CONFIG.Port_B_Write_Rate {50} \
-   CONFIG.Use_RSTB_Pin {true} \
- ] $weight_0_bram
+ ] $weight3_0_bram_0
 
   # Create interface connections
-  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins weight1_bram_0/BRAM_PORTB]
-  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTB [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTB] [get_bd_intf_pins weight_0_bram/BRAM_PORTB]
-  connect_bd_intf_net -intf_net axi_bram_ctrl_1_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_1/BRAM_PORTA] [get_bd_intf_pins weight3_bram_0/BRAM_PORTB]
-  connect_bd_intf_net -intf_net axi_bram_ctrl_1_BRAM_PORTB [get_bd_intf_pins axi_bram_ctrl_1/BRAM_PORTB] [get_bd_intf_pins weight2_bram_0/BRAM_PORTB]
+  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins weight0_0_bram/BRAM_PORTB]
+  connect_bd_intf_net -intf_net axi_bram_ctrl_1_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_1/BRAM_PORTA] [get_bd_intf_pins weight1_0_bram_0/BRAM_PORTB]
+  connect_bd_intf_net -intf_net axi_bram_ctrl_2_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_2/BRAM_PORTA] [get_bd_intf_pins weight2_0_bram_0/BRAM_PORTB]
+  connect_bd_intf_net -intf_net axi_bram_ctrl_3_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_3/BRAM_PORTA] [get_bd_intf_pins weight3_0_bram_0/BRAM_PORTB]
   connect_bd_intf_net -intf_net axi_dma_0_M_AXIS_MM2S [get_bd_intf_pins axi_dma_0/M_AXIS_MM2S] [get_bd_intf_pins dataflow4_4_0/in_pixel0]
   connect_bd_intf_net -intf_net axi_dma_0_M_AXI_MM2S [get_bd_intf_pins axi_dma_0/M_AXI_MM2S] [get_bd_intf_pins axi_smc/S00_AXI]
-  connect_bd_intf_net -intf_net axi_dma_0_M_AXI_S2MM [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] [get_bd_intf_pins axi_smc/S04_AXI]
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXI_S2MM [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] [get_bd_intf_pins axi_smc/S01_AXI]
   connect_bd_intf_net -intf_net axi_dma_1_M_AXIS_MM2S [get_bd_intf_pins axi_dma_1/M_AXIS_MM2S] [get_bd_intf_pins dataflow4_4_0/in_pixel1]
-  connect_bd_intf_net -intf_net axi_dma_1_M_AXI_MM2S [get_bd_intf_pins axi_dma_1/M_AXI_MM2S] [get_bd_intf_pins axi_smc/S03_AXI]
+  connect_bd_intf_net -intf_net axi_dma_1_M_AXI_MM2S [get_bd_intf_pins axi_dma_1/M_AXI_MM2S] [get_bd_intf_pins axi_smc/S04_AXI]
   connect_bd_intf_net -intf_net axi_dma_2_M_AXIS_MM2S [get_bd_intf_pins axi_dma_2/M_AXIS_MM2S] [get_bd_intf_pins dataflow4_4_0/in_pixel2]
-  connect_bd_intf_net -intf_net axi_dma_2_M_AXI_MM2S [get_bd_intf_pins axi_dma_2/M_AXI_MM2S] [get_bd_intf_pins axi_smc/S02_AXI]
+  connect_bd_intf_net -intf_net axi_dma_2_M_AXI_MM2S [get_bd_intf_pins axi_dma_2/M_AXI_MM2S] [get_bd_intf_pins axi_smc/S03_AXI]
   connect_bd_intf_net -intf_net axi_dma_3_M_AXIS_MM2S [get_bd_intf_pins axi_dma_3/M_AXIS_MM2S] [get_bd_intf_pins dataflow4_4_0/in_pixel3]
-  connect_bd_intf_net -intf_net axi_dma_3_M_AXI_MM2S [get_bd_intf_pins axi_dma_3/M_AXI_MM2S] [get_bd_intf_pins axi_smc/S01_AXI]
-  connect_bd_intf_net -intf_net axi_smc_M00_AXI [get_bd_intf_pins axi_smc/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
-  connect_bd_intf_net -intf_net axi_smc_M01_AXI [get_bd_intf_pins axi_smc/M01_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP1]
-  connect_bd_intf_net -intf_net axi_smc_M02_AXI [get_bd_intf_pins axi_smc/M02_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP2]
-  connect_bd_intf_net -intf_net axi_smc_M03_AXI [get_bd_intf_pins axi_smc/M03_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP3]
-  connect_bd_intf_net -intf_net dataflow4_4_0_in_weight0_V_PORTA [get_bd_intf_pins dataflow4_4_0/in_weight0_V_PORTA] [get_bd_intf_pins weight_0_bram/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_in_weight1_V_PORTA [get_bd_intf_pins dataflow4_4_0/in_weight1_V_PORTA] [get_bd_intf_pins weight1_bram_0/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_in_weight2_V_PORTA [get_bd_intf_pins dataflow4_4_0/in_weight2_V_PORTA] [get_bd_intf_pins weight2_bram_0/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_in_weight3_V_PORTA [get_bd_intf_pins dataflow4_4_0/in_weight3_V_PORTA] [get_bd_intf_pins weight3_bram_0/BRAM_PORTA]
+  connect_bd_intf_net -intf_net axi_dma_3_M_AXI_MM2S [get_bd_intf_pins axi_dma_3/M_AXI_MM2S] [get_bd_intf_pins axi_smc/S02_AXI]
+  connect_bd_intf_net -intf_net axi_smc_M00_AXI [get_bd_intf_pins axi_smc/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP3]
+  connect_bd_intf_net -intf_net axi_smc_M01_AXI [get_bd_intf_pins axi_smc/M01_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
+  connect_bd_intf_net -intf_net axi_smc_M02_AXI [get_bd_intf_pins axi_smc/M02_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP1]
+  connect_bd_intf_net -intf_net axi_smc_M03_AXI [get_bd_intf_pins axi_smc/M03_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP2]
+  connect_bd_intf_net -intf_net dataflow4_4_0_in_weight0_V_PORTA [get_bd_intf_pins dataflow4_4_0/in_weight0_V_PORTA] [get_bd_intf_pins weight0_0_bram/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_in_weight1_V_PORTA [get_bd_intf_pins dataflow4_4_0/in_weight1_V_PORTA] [get_bd_intf_pins weight1_0_bram_0/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_in_weight2_V_PORTA [get_bd_intf_pins dataflow4_4_0/in_weight2_V_PORTA] [get_bd_intf_pins weight2_0_bram_0/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_in_weight3_V_PORTA [get_bd_intf_pins dataflow4_4_0/in_weight3_V_PORTA] [get_bd_intf_pins weight3_0_bram_0/BRAM_PORTA]
   connect_bd_intf_net -intf_net dataflow4_4_0_out_pixel0 [get_bd_intf_pins axi_dma_0/S_AXIS_S2MM] [get_bd_intf_pins dataflow4_4_0/out_pixel0]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_buf_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_buf_V_PORTA] [get_bd_intf_pins psum_buf_bram/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_buf_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_buf_V_PORTB] [get_bd_intf_pins psum_buf_bram/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_1/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_1/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_1_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_1_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_2/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_1_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_1_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_2/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_2_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_2_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_3/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_2_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_2_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_3/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo1_0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo1_0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_4/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo1_0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo1_0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_4/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo1_1_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo1_1_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_5/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo1_1_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo1_1_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_5/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo1_2_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo1_2_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_6/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo1_2_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo1_2_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_6/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo2_0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo2_0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_7/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo2_0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo2_0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_7/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo2_1_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo2_1_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_8/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo2_1_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo2_1_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_8/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo2_2_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo2_2_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_9/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo2_2_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo2_2_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_9/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo3_0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo3_0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_10/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo3_0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo3_0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_10/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo3_1_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo3_1_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_11/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo3_1_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo3_1_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_11/BRAM_PORTB]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo3_2_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo3_2_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_12/BRAM_PORTA]
-  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo3_2_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo3_2_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_12/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_buf0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_buf0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_13/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_buf0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_buf0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_13/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_0_0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_0_0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_1/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_0_0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_0_0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_1/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_0_1_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_0_1_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_2/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_0_1_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_0_1_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_2/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_0_2_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_0_2_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_3/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_0_2_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_0_2_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_3/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_1_0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_1_0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_4/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_1_0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_1_0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_4/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_1_1_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_1_1_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_5/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_1_1_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_1_1_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_5/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_1_2_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_1_2_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_6/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_1_2_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_1_2_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_6/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_2_0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_2_0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_7/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_2_0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_2_0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_7/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_2_1_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_2_1_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_8/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_2_1_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_2_1_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_8/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_2_2_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_2_2_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_9/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_2_2_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_2_2_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_9/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_3_0_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_3_0_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_10/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_3_0_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_3_0_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_10/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_3_1_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_3_1_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_11/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_3_1_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_3_1_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_11/BRAM_PORTB]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_3_2_V_PORTA [get_bd_intf_pins dataflow4_4_0/psum_fifo0_3_2_V_PORTA] [get_bd_intf_pins dataflow4_4_0_bram_12/BRAM_PORTA]
+  connect_bd_intf_net -intf_net dataflow4_4_0_psum_fifo0_3_2_V_PORTB [get_bd_intf_pins dataflow4_4_0/psum_fifo0_3_2_V_PORTB] [get_bd_intf_pins dataflow4_4_0_bram_12/BRAM_PORTB]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins axi_dma_0/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_dma_1/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M02_AXI [get_bd_intf_pins axi_dma_2/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M02_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M03_AXI [get_bd_intf_pins axi_dma_3/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M03_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M04_AXI [get_bd_intf_pins dataflow4_4_0/s_axi_CTRL_BUS] [get_bd_intf_pins ps7_0_axi_periph/M04_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M05_AXI [get_bd_intf_pins axi_bram_ctrl_0/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M05_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M06_AXI [get_bd_intf_pins axi_bram_ctrl_1/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M06_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins dataflow4_4_0/s_axi_CTRL_BUS] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_bram_ctrl_0/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M02_AXI [get_bd_intf_pins axi_bram_ctrl_1/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M02_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M03_AXI [get_bd_intf_pins axi_bram_ctrl_2/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M03_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M04_AXI [get_bd_intf_pins axi_bram_ctrl_3/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M04_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M05_AXI [get_bd_intf_pins axi_dma_0/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M05_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M06_AXI [get_bd_intf_pins axi_dma_1/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M06_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M07_AXI [get_bd_intf_pins axi_dma_2/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M07_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M08_AXI [get_bd_intf_pins axi_dma_3/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M08_AXI]
 
   # Create port connections
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins axi_bram_ctrl_1/s_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_dma_1/m_axi_mm2s_aclk] [get_bd_pins axi_dma_1/s_axi_lite_aclk] [get_bd_pins axi_dma_2/m_axi_mm2s_aclk] [get_bd_pins axi_dma_2/s_axi_lite_aclk] [get_bd_pins axi_dma_3/m_axi_mm2s_aclk] [get_bd_pins axi_dma_3/s_axi_lite_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins dataflow4_4_0/ap_clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP1_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP2_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP3_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/M04_ACLK] [get_bd_pins ps7_0_axi_periph/M05_ACLK] [get_bd_pins ps7_0_axi_periph/M06_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins axi_bram_ctrl_1/s_axi_aclk] [get_bd_pins axi_bram_ctrl_2/s_axi_aclk] [get_bd_pins axi_bram_ctrl_3/s_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_dma_1/m_axi_mm2s_aclk] [get_bd_pins axi_dma_1/s_axi_lite_aclk] [get_bd_pins axi_dma_2/m_axi_mm2s_aclk] [get_bd_pins axi_dma_2/s_axi_lite_aclk] [get_bd_pins axi_dma_3/m_axi_mm2s_aclk] [get_bd_pins axi_dma_3/s_axi_lite_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins dataflow4_4_0/ap_clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP1_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP2_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP3_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/M04_ACLK] [get_bd_pins ps7_0_axi_periph/M05_ACLK] [get_bd_pins ps7_0_axi_periph/M06_ACLK] [get_bd_pins ps7_0_axi_periph/M07_ACLK] [get_bd_pins ps7_0_axi_periph/M08_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_1/s_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_dma_1/axi_resetn] [get_bd_pins axi_dma_2/axi_resetn] [get_bd_pins axi_dma_3/axi_resetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins dataflow4_4_0/ap_rst_n] [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/M05_ARESETN] [get_bd_pins ps7_0_axi_periph/M06_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_1/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_2/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_3/s_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_dma_1/axi_resetn] [get_bd_pins axi_dma_2/axi_resetn] [get_bd_pins axi_dma_3/axi_resetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins dataflow4_4_0/ap_rst_n] [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/M04_ARESETN] [get_bd_pins ps7_0_axi_periph/M05_ARESETN] [get_bd_pins ps7_0_axi_periph/M06_ARESETN] [get_bd_pins ps7_0_axi_periph/M07_ARESETN] [get_bd_pins ps7_0_axi_periph/M08_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
 
   # Create address segments
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
@@ -600,6 +614,8 @@ proc create_root_design { parentCell } {
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_3/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP3/HP3_DDR_LOWOCM] SEG_processing_system7_0_HP3_DDR_LOWOCM
   create_bd_addr_seg -range 0x00002000 -offset 0x40000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
   create_bd_addr_seg -range 0x00002000 -offset 0x42000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_bram_ctrl_1/S_AXI/Mem0] SEG_axi_bram_ctrl_1_Mem0
+  create_bd_addr_seg -range 0x00002000 -offset 0x44000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_bram_ctrl_2/S_AXI/Mem0] SEG_axi_bram_ctrl_2_Mem0
+  create_bd_addr_seg -range 0x00002000 -offset 0x46000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_bram_ctrl_3/S_AXI/Mem0] SEG_axi_bram_ctrl_3_Mem0
   create_bd_addr_seg -range 0x00010000 -offset 0x40400000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40410000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_1/S_AXI_LITE/Reg] SEG_axi_dma_1_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40420000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_2/S_AXI_LITE/Reg] SEG_axi_dma_2_Reg
@@ -616,27 +632,6 @@ proc create_root_design { parentCell } {
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP3/HP3_DDR_LOWOCM] SEG_processing_system7_0_HP3_DDR_LOWOCM
   exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_MM2S/SEG_processing_system7_0_HP3_DDR_LOWOCM]
 
-  create_bd_addr_seg -range 0x00002000 -offset 0x40000000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_axi_bram_ctrl_0_Mem0]
-
-  create_bd_addr_seg -range 0x00002000 -offset 0x42000000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs axi_bram_ctrl_1/S_AXI/Mem0] SEG_axi_bram_ctrl_1_Mem0
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_axi_bram_ctrl_1_Mem0]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40400000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_axi_dma_0_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40410000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs axi_dma_1/S_AXI_LITE/Reg] SEG_axi_dma_1_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_axi_dma_1_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40420000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs axi_dma_2/S_AXI_LITE/Reg] SEG_axi_dma_2_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_axi_dma_2_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40430000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs axi_dma_3/S_AXI_LITE/Reg] SEG_axi_dma_3_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_axi_dma_3_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs dataflow4_4_0/s_axi_CTRL_BUS/Reg] SEG_dataflow4_4_0_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_dataflow4_4_0_Reg]
-
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP1/HP1_DDR_LOWOCM] SEG_processing_system7_0_HP1_DDR_LOWOCM
   exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_processing_system7_0_HP1_DDR_LOWOCM]
 
@@ -646,21 +641,6 @@ proc create_root_design { parentCell } {
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP3/HP3_DDR_LOWOCM] SEG_processing_system7_0_HP3_DDR_LOWOCM
   exclude_bd_addr_seg [get_bd_addr_segs axi_dma_0/Data_S2MM/SEG_processing_system7_0_HP3_DDR_LOWOCM]
 
-  create_bd_addr_seg -range 0x00010000 -offset 0x40400000 [get_bd_addr_spaces axi_dma_1/Data_MM2S] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_1/Data_MM2S/SEG_axi_dma_0_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40410000 [get_bd_addr_spaces axi_dma_1/Data_MM2S] [get_bd_addr_segs axi_dma_1/S_AXI_LITE/Reg] SEG_axi_dma_1_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_1/Data_MM2S/SEG_axi_dma_1_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40420000 [get_bd_addr_spaces axi_dma_1/Data_MM2S] [get_bd_addr_segs axi_dma_2/S_AXI_LITE/Reg] SEG_axi_dma_2_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_1/Data_MM2S/SEG_axi_dma_2_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40430000 [get_bd_addr_spaces axi_dma_1/Data_MM2S] [get_bd_addr_segs axi_dma_3/S_AXI_LITE/Reg] SEG_axi_dma_3_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_1/Data_MM2S/SEG_axi_dma_3_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces axi_dma_1/Data_MM2S] [get_bd_addr_segs dataflow4_4_0/s_axi_CTRL_BUS/Reg] SEG_dataflow4_4_0_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_1/Data_MM2S/SEG_dataflow4_4_0_Reg]
-
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_1/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
   exclude_bd_addr_seg [get_bd_addr_segs axi_dma_1/Data_MM2S/SEG_processing_system7_0_HP0_DDR_LOWOCM]
 
@@ -669,21 +649,6 @@ proc create_root_design { parentCell } {
 
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_1/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP3/HP3_DDR_LOWOCM] SEG_processing_system7_0_HP3_DDR_LOWOCM
   exclude_bd_addr_seg [get_bd_addr_segs axi_dma_1/Data_MM2S/SEG_processing_system7_0_HP3_DDR_LOWOCM]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40400000 [get_bd_addr_spaces axi_dma_2/Data_MM2S] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_2/Data_MM2S/SEG_axi_dma_0_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40410000 [get_bd_addr_spaces axi_dma_2/Data_MM2S] [get_bd_addr_segs axi_dma_1/S_AXI_LITE/Reg] SEG_axi_dma_1_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_2/Data_MM2S/SEG_axi_dma_1_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40420000 [get_bd_addr_spaces axi_dma_2/Data_MM2S] [get_bd_addr_segs axi_dma_2/S_AXI_LITE/Reg] SEG_axi_dma_2_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_2/Data_MM2S/SEG_axi_dma_2_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x40430000 [get_bd_addr_spaces axi_dma_2/Data_MM2S] [get_bd_addr_segs axi_dma_3/S_AXI_LITE/Reg] SEG_axi_dma_3_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_2/Data_MM2S/SEG_axi_dma_3_Reg]
-
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces axi_dma_2/Data_MM2S] [get_bd_addr_segs dataflow4_4_0/s_axi_CTRL_BUS/Reg] SEG_dataflow4_4_0_Reg
-  exclude_bd_addr_seg [get_bd_addr_segs axi_dma_2/Data_MM2S/SEG_dataflow4_4_0_Reg]
 
   create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_2/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
   exclude_bd_addr_seg [get_bd_addr_segs axi_dma_2/Data_MM2S/SEG_processing_system7_0_HP0_DDR_LOWOCM]
