@@ -244,7 +244,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {64} \
+   CONFIG.c_mm2s_burst_size {256} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_weight_0
@@ -255,7 +255,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {64} \
+   CONFIG.c_mm2s_burst_size {256} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_weight_1
@@ -266,7 +266,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {64} \
+   CONFIG.c_mm2s_burst_size {256} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_weight_2
@@ -277,7 +277,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {64} \
+   CONFIG.c_mm2s_burst_size {256} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_weight_3
@@ -288,7 +288,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {64} \
+   CONFIG.c_mm2s_burst_size {256} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_weight_4
@@ -299,7 +299,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {64} \
+   CONFIG.c_mm2s_burst_size {256} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_weight_5
@@ -310,7 +310,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {64} \
+   CONFIG.c_mm2s_burst_size {256} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_weight_6
@@ -321,7 +321,7 @@ proc create_root_design { parentCell } {
    CONFIG.c_include_s2mm {0} \
    CONFIG.c_include_sg {0} \
    CONFIG.c_micro_dma {0} \
-   CONFIG.c_mm2s_burst_size {64} \
+   CONFIG.c_mm2s_burst_size {256} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_weight_7
